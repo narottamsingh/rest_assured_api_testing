@@ -9,6 +9,7 @@
 	<test thread-count="5" name="Test">
 		<classes>
 			<class name="com.bce.api.test.EmployeeDDTests" />
+<!-- 			<class name="com.bce.api.test.EmployeeDDTests2" /> -->
 			<class name="com.bce.api.test.EmployeeTests" />
 		</classes>
 	</test> <!-- Test -->

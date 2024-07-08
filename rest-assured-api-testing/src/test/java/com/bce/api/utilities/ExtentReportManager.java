@@ -26,7 +26,7 @@ public class ExtentReportManager implements ITestListener {
 
         reportName = "Test-report-" + timeStamp;
 
-        sparkReporter = new ExtentSparkReporter("/home/narottam/ram/" + reportName);
+        sparkReporter = new ExtentSparkReporter(".//reports//" + reportName);
 
         sparkReporter.config().setDocumentTitle("RestAssuredTestAutomationReport");
         sparkReporter.config().setReportName("EmployeeTest");

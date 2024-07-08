@@ -1,9 +1,8 @@
 package com.bce.api.test;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.AssertJUnit;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -13,14 +12,16 @@ import com.github.javafaker.Faker;
 
 import io.restassured.response.Response;
 
-
 public class EmployeeTests {
 
 	Faker faker;
 	Employee empPayload;
 
+	private Logger logger;
+
 	@BeforeClass
 	public void setup() {
+		logger = LogManager.getLogger(this.getClass());
 		faker = new Faker();
 		empPayload = new Employee();
 
@@ -28,14 +29,16 @@ public class EmployeeTests {
 		empPayload.setFirstname(faker.name().firstName());
 		empPayload.setFirstname(faker.name().lastName());
 		empPayload.setEmail(faker.internet().emailAddress());
-		//empPayload.setDob(faker.date().birthday());
+		// empPayload.setDob(faker.date().birthday());
 	}
 
 	@Test(priority = 1)
 	public void testCreateEmployee() {
+		logger.info("********Employee Creating**************");
 		Response response = EmployeeEndPoints.createEmployee(empPayload);
 		response.then().log().all();
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
+		logger.info("*********Employee Created**************");
 	}
 
 	@Test
@@ -43,7 +46,7 @@ public class EmployeeTests {
 		Response response = EmployeeEndPoints.readAllEmployee();
 		response.then().log().all();
 		AssertJUnit.assertEquals(response.getStatusCode(), 200);
-		
+
 	}
-	
+
 }
